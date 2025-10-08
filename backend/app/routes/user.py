@@ -28,3 +28,7 @@ async def debug_cors():
         # We can also return it to see it in the browser
         return {"allowed_origins_from_env": origins.split(",")}
     return {"error": "ALLOWED_ORIGINS is not set"}
+
+@router.get("/api/hello")
+def read_root():
+    return {"message": "Welcome to the Nickopusan API!"}
