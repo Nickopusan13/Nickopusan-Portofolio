@@ -33,7 +33,7 @@ export default function FourPage() {
   return (
     <section
       id="contact-me"
-      className="hero-section bg-zinc-900 bg-cover bg-center min-h-screen w-full flex items-center justify-center p-6 snap-start"
+      className="hero-section bg-zinc-900 bg-cover bg-center h-screen w-full flex items-center justify-center p-6 snap-start"
     >
       <ToasterProvider />
       <div className="flex flex-col items-center text-white w-full max-w-2xl">

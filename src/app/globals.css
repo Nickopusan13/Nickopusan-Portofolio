@@ -30,7 +30,7 @@
   position: absolute;
   width: 400px;
   height: 400px;
-  background: #6366f1; /* indigo-500 */
+  background: #6366f1;
   border-radius: 50%;
   filter: blur(150px);
   z-index: 0;
@@ -103,10 +103,6 @@
 
 body {
   font-family: var(--font-love), Arial, Helvetica, sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 :root {

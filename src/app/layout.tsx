@@ -24,8 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${loveYaLikeASister.variable} antialiased`}>
+    <html className="overflow-y-hidden scroll-smooth" lang="en">
+      <body
+        className={`${loveYaLikeASister.variable} antialiased h-full bg-black`}
+      >
         {children}
       </body>
     </html>
