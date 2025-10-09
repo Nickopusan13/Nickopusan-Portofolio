@@ -15,18 +15,16 @@ export default function Main() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-      className="overflow-auto snap-y snap-mandatory h-screen scroll-smooth scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-500"
+      className="overflow-auto snap-y snap-mandatory h-screen bg-white scroll-smooth scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-500"
     >
-      <div className="p-3 fixed z-100">
+      <div className="p-3 absolute z-100">
         <SidebarProvider defaultOpen={false}>
           <SideBarApp />
           <SidebarTrigger />
         </SidebarProvider>
       </div>
       <FirstPage />
-      <motion.div>
-        <SecPage />
-      </motion.div>
+      <SecPage />
       <ThirdPage />
       <FourPage />
     </motion.div>

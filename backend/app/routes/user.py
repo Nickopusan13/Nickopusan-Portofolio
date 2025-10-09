@@ -16,7 +16,3 @@ async def user_message(data: UserMessage, db: AsyncSession = Depends(get_db)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error {e}"
         )
-
-@router.get("/api/hello")
-def read_root():
-    return {"message": "Welcome to the Nickopusan API!"}

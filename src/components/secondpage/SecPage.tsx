@@ -5,11 +5,13 @@ import { useState } from "react";
 import AppDialog from "../AppDialog";
 import { DialogTitle } from "@headlessui/react";
 import { AnimatePresence, motion } from "motion/react";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 const slides = [
   {
     title: "Full-Stack E-commerce Platform",
     key: "fullstack",
+    href: "https://github.com/Nickopusan13/Caufi-Website",
     images: ["/assets/Frame1.png", "/assets/Frame1.png", "/assets/Frame2.png"],
     description:
       "A feature-rich e-commerce platform designed for a seamless shopping experience. The responsive frontend is built with Next.js for fast page loads, while the FastAPI backend securely handles products, user accounts, and order processing.",
@@ -17,6 +19,7 @@ const slides = [
   {
     title: "Automation Pipeline",
     key: "automation",
+    herf: "#",
     images: [
       "/assets/Centris_1.png",
       "/assets/Centris_2.png",
@@ -48,7 +51,7 @@ export default function SecPage() {
         </motion.h1>
         <div className="flex flex-col items-center flex-grow w-full h-full lg:grid lg:grid-cols-2 lg:gap-10 gap-10">
           {slides.map((item, idx) => (
-            <motion.div
+            <motion.a
               key={idx}
               className="flex flex-col items-center w-full gap-5 bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-pink-400/40 transition-all"
               whileHover={{ scale: 1.02 }}
@@ -66,7 +69,7 @@ export default function SecPage() {
               <p className="text-center text-gray-300 text-sm lg:block hidden">
                 {item.description}
               </p>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
         <div className="h-full w-full flex items-center justify-center lg:mt-10 mt-14">
@@ -108,7 +111,13 @@ export default function SecPage() {
               >
                 <div className="flex flex-col items-center justify-center text-white">
                   <DialogTitle className="mb-5 text-2xl font-semibold">
-                    {item.title}
+                    <motion.a
+                      className="flex gap-1 items-center justify-center underline cursor-pointer"
+                      whileHover={{ scale: 1.1 }}
+                      href={item.href}
+                    >
+                      {item.title} <FaAngleDoubleRight />
+                    </motion.a>
                   </DialogTitle>
                   <ImageScroller images={item.images} title={item.title} />
                   <p className="text-justify mt-10 text-gray-300 leading-relaxed">

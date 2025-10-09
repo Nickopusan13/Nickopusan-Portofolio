@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Nickopusan Portofolio",
   description:
     "Python and Full-Stack Web Developer specializing in automation, web applications, data analysis, and scalable solutions.",
+  icons: {
+    icon: "/briefcase.svg",
+  },
 };
 
 export default function RootLayout({
