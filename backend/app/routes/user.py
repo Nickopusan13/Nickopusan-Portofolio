@@ -14,5 +14,5 @@ async def user_message(data: UserMessage, db: AsyncSession = Depends(get_db)):
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Error {e}"
+            detail="Internal server error. Please try again later."
         )
