@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Love_Ya_Like_A_Sister } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const loveYaLikeASister = Love_Ya_Like_A_Sister({
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={`${loveYaLikeASister.variable} antialiased h-full bg-black`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
