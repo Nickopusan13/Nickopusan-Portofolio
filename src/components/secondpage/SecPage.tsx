@@ -62,6 +62,7 @@ export default function SecPage() {
               </h2>
               <button
                 onClick={() => setOpen(item.key)}
+                id="my-work-image"
                 className="cursor-pointer w-full rounded-xl overflow-hidden shadow-lg hover:shadow-pink-500/20 transition"
               >
                 <ImageScroller images={item.images} title={item.title} />
