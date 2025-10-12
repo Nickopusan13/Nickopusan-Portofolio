@@ -32,10 +32,10 @@ export default function ImageScroller({ title, images }: ImageScrollerProps) {
               <Image
                 src={img}
                 alt={title}
-                fill
                 priority={false}
                 loading="lazy"
-                className="object-cover object-center"
+                className="my-work-image-click object-cover object-center"
+                fill
               />
             </div>
           </SwiperSlide>
