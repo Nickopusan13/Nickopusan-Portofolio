@@ -2,7 +2,6 @@
 
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaSquareUpwork } from "react-icons/fa6";
-import Link from "next/link";
 import { motion } from "motion/react";
 
 export default function FirstPage() {
@@ -46,7 +45,11 @@ export default function FirstPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
         >
-          <Link href="https://github.com/Nickopusan13">
+          <a
+            href="https://github.com/Nickopusan13"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <motion.div
               className="relative flex h-16 w-16 items-center justify-center rounded-lg border-2 border-gray-600 bg-gray-800 text-gray-400 transition-all duration-300"
               whileHover={{
@@ -60,8 +63,12 @@ export default function FirstPage() {
             >
               <FaGithub />
             </motion.div>
-          </Link>
-          <Link href="https://www.linkedin.com/in/nickopusan13/">
+          </a>
+          <a
+            href="https://www.linkedin.com/in/nickopusan13/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <motion.div
               className="relative flex h-16 w-16 items-center justify-center rounded-lg border-2 border-gray-600 bg-gray-800 text-gray-400 transition-all duration-300"
               whileHover={{
@@ -75,8 +82,12 @@ export default function FirstPage() {
             >
               <FaLinkedin />
             </motion.div>
-          </Link>
-          <Link href="https://www.upwork.com/freelancers/nickopusan">
+          </a>
+          <a
+            href="https://www.upwork.com/freelancers/nickopusan"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <motion.div
               className="relative flex h-16 w-16 items-center justify-center rounded-lg border-2 border-gray-600 bg-gray-800 text-gray-400 transition-all duration-300"
               whileHover={{
@@ -90,7 +101,7 @@ export default function FirstPage() {
             >
               <FaSquareUpwork />
             </motion.div>
-          </Link>
+          </a>
         </motion.div>
       </div>
     </motion.section>
