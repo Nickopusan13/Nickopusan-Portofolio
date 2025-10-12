@@ -8,12 +8,15 @@ import "swiper/css/effect-fade";
 import "swiper/css/zoom";
 import Image from "next/image";
 
-type ImageScrollerProps = {
+export default function ImageScroller({
+  title,
+  images,
+  image_class,
+}: {
   title: string;
   images: string[];
-};
-
-export default function ImageScroller({ title, images }: ImageScrollerProps) {
+  image_class?: string;
+}) {
   return (
     <div className="w-full flex justify-center items-center">
       <Swiper
@@ -34,7 +37,7 @@ export default function ImageScroller({ title, images }: ImageScrollerProps) {
                 alt={title}
                 priority={false}
                 loading="lazy"
-                className="my-work-image-click object-cover object-center"
+                className={`${image_class} object-cover object-center`}
                 fill
               />
             </div>

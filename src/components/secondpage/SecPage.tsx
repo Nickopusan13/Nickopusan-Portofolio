@@ -64,7 +64,11 @@ export default function SecPage() {
                 onClick={() => setOpen(item.key)}
                 className="cursor-pointer w-full rounded-xl overflow-hidden shadow-lg hover:shadow-pink-500/20 transition"
               >
-                <ImageScroller images={item.images} title={item.title} />
+                <ImageScroller
+                  image_class="my-work-image-click"
+                  images={item.images}
+                  title={item.title}
+                />
               </button>
               <p className="text-center text-gray-300 text-sm lg:block hidden">
                 {item.description}
