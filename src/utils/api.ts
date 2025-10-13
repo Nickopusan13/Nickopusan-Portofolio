@@ -7,8 +7,6 @@ export interface UserMessage {
 }
 
 export async function postUserMessage(data: UserMessage) {
-  console.log("API_URL =", API_URL);
-  console.log("Requesting:", `${API_URL}/api/user`);
   const res = await fetch(`${API_URL}/api/user`, {
     method: "POST",
     headers: {
