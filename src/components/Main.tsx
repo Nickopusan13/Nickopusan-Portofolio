@@ -17,7 +17,7 @@ export default function Main() {
       transition={{ duration: 1 }}
       className="overflow-auto snap-y snap-mandatory h-screen scroll-smooth scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-500 bg-black"
     >
-      <div className="p-3 fixed z-100">
+      <div className="p-3 fixed z-50 sm:z-100">
         <SidebarProvider defaultOpen={false}>
           <SideBarApp />
           <SidebarTrigger />

@@ -48,7 +48,7 @@ export default function AppDialog({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
+                className="hidden sm:block absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
               >
                 <X className="w-5 h-5 text-white" />
               </button>
