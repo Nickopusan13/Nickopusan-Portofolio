@@ -15,7 +15,7 @@ const loveYaLikeASister = Love_Ya_Like_A_Sister({
 export const metadata: Metadata = {
   title: "Nickopusan Portofolio",
   description:
-    "Python and Full-Stack Web Developer specializing in automation, web applications, data analysis, and scalable solutions.",
+    "I'm a Python expert who builds complete web solutions and automation tools. From creating modern websites with Next.js to automating repetitive tasks, to solve complex problems and improve efficiency.",
   icons: {
     icon: "/briefcase.svg",
   },
