@@ -135,15 +135,29 @@ export default function SecPage() {
               <div className="flex flex-col gap-6 sm:gap-10 w-full max-w-full">
                 {automation_slides.sections.map((section, idx) => (
                   <div key={idx} className="flex flex-col w-full gap-2">
-                    <div className="w-full max-w-full overflow-hidden">
+                    <div className="w-full">
                       <ImageScroller
                         title={section.title}
                         images={section.images}
                       />
                     </div>
-                    <h2 className="text-center italic opacity-40 text-sm sm:text-base">
-                      {section.title}
-                    </h2>
+                    {section.href ? (
+                      <div className="flex items-center justify-center">
+                        <motion.a
+                          href={section.href}
+                          className="underline cursor-pointer flex items-center justify-center gap-3 text-center italic opacity-40 text-sm sm:text-base"
+                          whileHover={{ scale: 1.05 }}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {section.title} <FaLink />
+                        </motion.a>
+                      </div>
+                    ) : (
+                      <h2 className="text-center italic opacity-40 text-sm sm:text-base">
+                        {section.title}
+                      </h2>
+                    )}
                     <p className="text-justify mt-2 text-sm sm:text-base leading-relaxed">
                       {section.description}
                     </p>
