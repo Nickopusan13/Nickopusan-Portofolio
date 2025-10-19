@@ -43,12 +43,12 @@ export default function AppDialog({
             <DialogPanel
               className="relative bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-900
                          border border-white/10 rounded-2xl shadow-2xl
-                         p-6 sm:p-10 text-white backdrop-blur-md overflow-y-auto max-h-[90vh]"
+                         p-6 sm:p-10 text-white backdrop-blur-md overflow-y-auto max-h-[90vh] overflow-x-hidden scrollbar-none"
             >
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="hidden sm:block absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
+                className="block absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
               >
                 <X className="w-5 h-5 text-white" />
               </button>

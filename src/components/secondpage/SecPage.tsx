@@ -5,31 +5,8 @@ import { useState } from "react";
 import AppDialog from "../AppDialog";
 import { DialogTitle } from "@headlessui/react";
 import { AnimatePresence, motion } from "motion/react";
-import { FaAngleDoubleRight } from "react-icons/fa";
-
-const slides = [
-  {
-    title: "Full-Stack E-commerce Platform",
-    key: "fullstack",
-    href: "https://github.com/Nickopusan13/Caufi-Website",
-    images: ["/assets/Frame1.png", "/assets/Frame1.png", "/assets/Frame2.png"],
-    description:
-      "A feature-rich e-commerce platform designed for a seamless shopping experience. The responsive frontend is built with Next.js for fast page loads, while the FastAPI backend securely handles products, user accounts, and order processing.",
-  },
-  {
-    title: "Automation Pipeline",
-    key: "automation",
-    herf: "#",
-    images: [
-      "/assets/Centris_1.png",
-      "/assets/Centris_2.png",
-      "/assets/Centris_3.png",
-      "/assets/Centris_output.png",
-    ],
-    description:
-      "This Python pipeline automates the entire data extraction workflow: logging in, searching, and scraping. It uses Playwright to handle dynamic sites and delivers clean, structured JSON data and downloaded images.",
-  },
-];
+import { FaAngleDoubleRight, FaLink } from "react-icons/fa";
+import { caufi_slides, automation_slides, slides } from "./Item";
 
 export default function SecPage() {
   const [open, setOpen] = useState<string | null>(null);
@@ -104,32 +81,78 @@ export default function SecPage() {
           </div>
         </div>
       </div>
+
       <AnimatePresence>
-        {slides.map(
-          (item) =>
-            open === item.key && (
-              <AppDialog
-                onClose={() => setOpen(null)}
-                open={true}
-                key={item.key}
-              >
-                <div className="flex flex-col items-center justify-center text-white">
-                  <DialogTitle className="mb-5 text-2xl font-semibold">
-                    <motion.a
-                      className="flex gap-1 items-center justify-center underline cursor-pointer"
-                      whileHover={{ scale: 1.1 }}
-                      href={item.href}
-                    >
-                      {item.title} <FaAngleDoubleRight />
-                    </motion.a>
-                  </DialogTitle>
-                  <ImageScroller images={item.images} title={item.title} />
-                  <p className="text-justify mt-10 text-gray-300 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </AppDialog>
-            )
+        {open === "fullstack" && (
+          <AppDialog onClose={() => setOpen(null)} open={true}>
+            <div className="flex flex-col items-center justify-center text-white px-2 sm:px-4">
+              <DialogTitle className="mb-5 text-xl sm:text-2xl font-semibold text-center">
+                <motion.a
+                  className="flex gap-1 items-center justify-center underline cursor-pointer"
+                  whileHover={{ scale: 1.1 }}
+                  href={caufi_slides.href}
+                >
+                  {caufi_slides.title} <FaAngleDoubleRight />
+                </motion.a>
+              </DialogTitle>
+              <div className="flex flex-col gap-6 sm:gap-10 w-full max-w-full">
+                {caufi_slides.sections.map((section, idx) => (
+                  <div key={idx} className="flex flex-col w-full gap-2">
+                    <div className="w-full max-w-full overflow-hidden">
+                      <ImageScroller
+                        title={section.title}
+                        images={section.images}
+                      />
+                    </div>
+                    <h2 className="text-center italic opacity-40 text-sm sm:text-base">
+                      {section.title}
+                    </h2>
+                    <p className="text-justify mt-2 text-sm sm:text-base leading-relaxed">
+                      {section.description}
+                    </p>
+                    <div className="border-1 w-full border-white opacity-40"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AppDialog>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {open === "automation" && (
+          <AppDialog onClose={() => setOpen(null)} open={true}>
+            <div className="flex flex-col items-center justify-center text-white px-2 sm:px-4">
+              <DialogTitle className="mb-5 text-xl sm:text-2xl font-semibold text-center">
+                <motion.a
+                  className="flex gap-1 items-center justify-center underline cursor-pointer"
+                  whileHover={{ scale: 1.1 }}
+                  href={automation_slides.href}
+                >
+                  {automation_slides.title} <FaAngleDoubleRight />
+                </motion.a>
+              </DialogTitle>
+              <div className="flex flex-col gap-6 sm:gap-10 w-full max-w-full">
+                {automation_slides.sections.map((section, idx) => (
+                  <div key={idx} className="flex flex-col w-full gap-2">
+                    <div className="w-full max-w-full overflow-hidden">
+                      <ImageScroller
+                        title={section.title}
+                        images={section.images}
+                      />
+                    </div>
+                    <h2 className="text-center italic opacity-40 text-sm sm:text-base">
+                      {section.title}
+                    </h2>
+                    <p className="text-justify mt-2 text-sm sm:text-base leading-relaxed">
+                      {section.description}
+                    </p>
+                    <div className="border-1 w-full border-white opacity-40"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AppDialog>
         )}
       </AnimatePresence>
     </motion.section>

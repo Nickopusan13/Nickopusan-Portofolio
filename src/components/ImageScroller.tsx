@@ -21,13 +21,14 @@ export default function ImageScroller({
     <div className="w-full flex justify-center items-center">
       <Swiper
         className="w-full max-w-xl aspect-[16/9] rounded-2xl overflow-hidden cursor-pointer transition-transform duration-500"
-        loop={true}
+        loop={images.length > 1}
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         modules={[Pagination, Autoplay, Navigation, Zoom]}
         slidesPerView={1}
         spaceBetween={20}
         zoom={true}
+        lazyPreloadPrevNext={1}
       >
         {images.map((img, index) => (
           <SwiperSlide key={index} className="relative w-full h-full">
@@ -35,9 +36,10 @@ export default function ImageScroller({
               <Image
                 src={img}
                 alt={title}
-                priority={false}
-                loading="lazy"
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
                 className={`${image_class} object-cover object-center`}
+                sizes="(max-width: 768px) 100vw, 600px"
                 fill
               />
             </div>
