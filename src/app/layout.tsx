@@ -3,6 +3,7 @@ import { Love_Ya_Like_A_Sister } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import GoogletagManager from "@/components/GTM";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const loveYaLikeASister = Love_Ya_Like_A_Sister({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <GoogletagManager />
         {children}
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
