@@ -6,6 +6,10 @@ from app.crud.user import create_message
 
 router = APIRouter()
 
+@router.get("/api/health")
+async def health_check():
+    return {"status": "healthy"}
+
 @router.post("/api/user", response_model=UserMessage)
 async def user_message(data: UserMessage, db: AsyncSession = Depends(get_db)):
     try:
