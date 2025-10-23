@@ -7,8 +7,22 @@ import SideBarApp from "./SideBar";
 import { motion } from "motion/react";
 import ThirdPage from "./thirdpage/ThirdPage";
 import FourPage from "./fourthpage/FourPage";
+import { RiChatSmile2Fill } from "react-icons/ri";
+import ChatBot from "./ChatBot";
+import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
+import { useState } from "react";
+
+interface Message {
+  sender: "user" | "bot";
+  text: string;
+}
 
 export default function Main() {
+  const [sessionId, setSessionId] = useState<string | undefined>(() => {
+    const existing = localStorage.getItem("chatbot_session_id");
+    return existing || undefined;
+  });
+  const [messages, setMessages] = useState<Message[]>([]);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -23,6 +37,23 @@ export default function Main() {
           <SidebarTrigger />
         </SidebarProvider>
       </div>
+      <Popover>
+        <motion.div className="fixed bottom-5 right-10 z-100">
+          <PopoverTrigger className="w-15 h-15 bg-zinc-800 rounded-4xl flex items-center justify-center outline-none hover:scale-105 transition-transform duration-200">
+            <RiChatSmile2Fill className="text-3xl text-green-500" />
+          </PopoverTrigger>
+          <PopoverContent className="divide-y divide-white/5 rounded-xl bg-zinc-800/80 text-sm/6 transition duration-200 ease-in-out [--anchor-gap:--spacing(5)] data-closed:-translate-y-1 data-closed:opacity-0 w-90 h-130 sm:mr-5 mr-2">
+            <div className="flex flex-col h-full">
+              <ChatBot
+                messages={messages}
+                setMessages={setMessages}
+                sessionId={sessionId}
+                setSessionId={setSessionId}
+              />
+            </div>
+          </PopoverContent>
+        </motion.div>
+      </Popover>
       <FirstPage />
       <SecPage />
       <ThirdPage />
