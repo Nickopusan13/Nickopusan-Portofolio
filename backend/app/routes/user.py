@@ -47,7 +47,7 @@ async def gemini_chat(request: ChatRequest):
         )
         reply_text = response.text if hasattr(response, "text") else str(response)
         chat_history.append({"role": "assistant", "content": reply_text})
-        context_messages = [m["content"] for m in chat_history[-20:]]
+        sessions[session_id] = chat_history
         return {"reply": reply_text, "session_id": session_id}
     except Exception as e:
         print(f"[Gemini API] {e}")
