@@ -4,7 +4,7 @@ Hello! I’m **Nickopusan**, a **Fullstack Engineer** and **Python Expert** pass
 You can visit my interactive portfolio here:  
 👉 **[https://nickopusan-portofolio.vercel.app/](https://nickopusan-portofolio.vercel.app/)**
 
-This portfolio is built with **Next.js**, **FastAPI**, **Supabase**, **Vercel**, and **Railway** — featuring a fully interactive “Send Message” form connected to my database and advanced analytics tracking with **GTM**, **GA4**, and **BigQuery**.
+This portfolio is built with **Next.js**, **FastAPI**, **Neon**, **Vercel**, and **Google Cloud** — featuring a fully interactive “Send Message” form connected to my database, chatbot and advanced analytics tracking with **GTM**, **GA4**, and **BigQuery**.
 
 ---
 
@@ -18,11 +18,11 @@ This portfolio is built with **Next.js**, **FastAPI**, **Supabase**, **Vercel**,
 ### **Backend**
 
 - **FastAPI** — High-performance Python API framework
-- **Railway** — Cloud hosting for backend and APIs
+- **Google Cloud** — Cloud hosting for backend and APIs
 
 ### **Database**
 
-- **Supabase** — PostgreSQL with real-time updates, auth, and storage
+- **Neon** — PostgreSQL with real-time updates, auth, and storage
 
 ---
 
