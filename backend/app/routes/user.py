@@ -41,13 +41,13 @@ async def gemini_chat(request: ChatRequest):
             model="gemini-2.5-flash",
             contents=context_messages,
             config=types.GenerateContentConfig(
-                thinking_config=types.ThinkingConfig(thinking_budget=1000),
+                thinking_config=types.ThinkingConfig(thinking_budget=1500),
                 system_instruction=SYSTEM_INSTRUCTION
             )
         )
         reply_text = response.text if hasattr(response, "text") else str(response)
         chat_history.append({"role": "assistant", "content": reply_text})
-        sessions[session_id] = chat_history
+        context_messages = [m["content"] for m in chat_history[-20:]]
         return {"reply": reply_text, "session_id": session_id}
     except Exception as e:
         print(f"[Gemini API] {e}")
