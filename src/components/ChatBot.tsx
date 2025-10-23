@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { postUserChatBot } from "@/utils/api";
 import { Spinner } from "@/components/ui/spinner";
 import ReactMarkdown from "react-markdown";
@@ -25,7 +25,10 @@ export default function ChatBot({
 }: ChatBotProps) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const bottomRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   useEffect(() => {
     if (!sessionId && typeof window !== "undefined") {
       const existing = localStorage.getItem("chatbot_session_id");
@@ -41,10 +44,8 @@ export default function ChatBot({
 
   const handleSend = async () => {
     if (!input.trim() || loading) return;
-
     const userInput = input.trim();
     const userMessage: Message = { sender: "user", text: userInput };
-
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
@@ -97,6 +98,7 @@ export default function ChatBot({
             </div>
           </div>
         ))}
+        <div ref={bottomRef} />
         {loading && <Spinner />}
       </div>
       <div className="flex gap-2 border-t border-white/10 mt-2 pt-2 px-3 pb-2 bg-transparent">
