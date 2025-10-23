@@ -26,10 +26,18 @@ export default function ChatBot({
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
+    if (!sessionId && typeof window !== "undefined") {
+      const existing = localStorage.getItem("chatbot_session_id");
+      if (existing) setSessionId(existing);
+    }
+  }, [sessionId, setSessionId]);
+
+  useEffect(() => {
     if (sessionId) {
       localStorage.setItem("chatbot_session_id", sessionId);
     }
   }, [sessionId]);
+
   const handleSend = async () => {
     if (!input.trim() || loading) return;
 
@@ -58,6 +66,7 @@ export default function ChatBot({
       setLoading(false);
     }
   };
+
   return (
     <div className="flex flex-col h-full text-white">
       <div className="flex flex-col items-center justify-center pt-2 pb-1">
