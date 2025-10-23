@@ -25,6 +25,7 @@ export default function ChatBot({
 }: ChatBotProps) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (!sessionId && typeof window !== "undefined") {
       const existing = localStorage.getItem("chatbot_session_id");
@@ -33,7 +34,7 @@ export default function ChatBot({
   }, [sessionId, setSessionId]);
 
   useEffect(() => {
-    if (sessionId) {
+    if (sessionId && typeof window !== "undefined") {
       localStorage.setItem("chatbot_session_id", sessionId);
     }
   }, [sessionId]);
