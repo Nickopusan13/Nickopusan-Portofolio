@@ -18,10 +18,7 @@ interface Message {
 }
 
 export default function Main() {
-  const [sessionId, setSessionId] = useState<string | undefined>(() => {
-    const existing = localStorage.getItem("chatbot_session_id");
-    return existing || undefined;
-  });
+  const [sessionId, setSessionId] = useState<string | undefined>(undefined);
   const [messages, setMessages] = useState<Message[]>([]);
   return (
     <motion.div
