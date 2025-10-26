@@ -10,6 +10,7 @@ import FourPage from "./fourthpage/FourPage";
 import { RiChatSmile2Fill } from "react-icons/ri";
 import ChatBot from "./ChatBot";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
+import { Drawer, DrawerTrigger, DrawerClose, DrawerContent } from "./ui/drawer";
 import { useState } from "react";
 
 interface Message {
@@ -51,6 +52,9 @@ export default function Main() {
           </PopoverContent>
         </motion.div>
       </Popover>
+      <Drawer>
+        <DrawerTrigger asChild></DrawerTrigger>
+      </Drawer>
       <FirstPage />
       <SecPage />
       <ThirdPage />

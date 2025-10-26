@@ -39,6 +39,7 @@ async def gemini_chat(request: ChatRequest):
     session_id = request.session_id or str(uuid.uuid4())
     chat_history = sessions.get(session_id, [])
     chat_history.append({"role": "user", "content": request.prompt})
+    chat_history = chat_history[-30:]
     context_messages = [m["content"] for m in chat_history]
     try:
         response = client.models.generate_content(

@@ -27,7 +27,7 @@ export default function FourPage() {
       setMessage("");
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Something Wrong";
-      toast.error(message, { duration: 2000 });
+      toast.error(message, { duration: 5000 });
     }
   };
   return (

@@ -26,7 +26,7 @@ export async function postUserMessage(data: UserMessage) {
   });
   if (!res.ok) {
     const error = await res.json().catch(() => ({}));
-    throw new Error(error.detail || "Error");
+    throw new Error(error.detail[0]?.msg || JSON.stringify(error.detail));
   }
   return await res.json();
 }
@@ -46,7 +46,6 @@ export async function postUserChatBot(
     throw new Error(error.detail || "Error");
   }
   const rawResponse = await res.json();
-  console.log('[API] Raw response:', rawResponse); // ADD THIS
-  
+  console.log("[API] Raw response:", rawResponse);
   return rawResponse;
 }
