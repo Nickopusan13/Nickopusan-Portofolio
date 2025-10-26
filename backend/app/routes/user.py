@@ -6,21 +6,19 @@ from app.crud.user import create_message
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
-import os, uuid, asyncio
+import os, uuid
 
 load_dotenv()
 router = APIRouter()
 sessions = {}
 
-MAX_RETRIES = 2
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 instruction_path = os.path.join(BASE_DIR, "../config/instruction.txt")
 with open(instruction_path, "r", encoding="utf-8") as f:
-    SYSTEM_INSTRUCTION = f.read()
-
+    SYSTEM_INSTRUCTION = f.read()      
+            
 @router.post("/api/user", response_model=UserMessage)
 async def user_message(data: UserMessage, db: AsyncSession = Depends(get_db)):
-    for attempt in range(MAX_RETRIES):
         try:
             message = await create_message(
                 db=db, 
@@ -30,12 +28,10 @@ async def user_message(data: UserMessage, db: AsyncSession = Depends(get_db)):
             )
             return message
         except Exception as e:
-            if attempt == MAX_RETRIES - 1:
                 raise HTTPException(
                     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                     detail="Internal server error. Please try again later."
                 )
-            await asyncio.sleep(0.5)
 
 @router.post("/api/chat", response_model=ChatResponse)
 async def gemini_chat(request: ChatRequest):

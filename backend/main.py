@@ -5,15 +5,24 @@ from app.db.init_db import create_tabel
 from starlette.middleware.sessions import SessionMiddleware
 from dotenv import load_dotenv
 from app.routes import user
+from app.core.security import neon_db
 import uvicorn
-import os
+import os, asyncio
 
 load_dotenv()
 
 @asynccontextmanager
 async def lifespan(app:FastAPI):
     await create_tabel()
-    yield
+    task = asyncio.create_task(neon_db())
+    try:
+        yield
+    finally:
+        task.cancel()
+        try:
+            await task
+        except asyncio.CancelledError:
+            print("Keep-alive task cancelled on shutdown.")
 
 app = FastAPI(title="Nickopusan Portofolio", lifespan=lifespan)
 app.add_middleware(
