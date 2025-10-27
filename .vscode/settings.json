@@ -1,7 +1,0 @@
-{
-  "editor.wordWrap": "on",
-  "editor.minimap.enabled": false,
-  "editor.cursorBlinking": "smooth",
-  "editor.codeLens": true,
-  "editor.cursorStyle": "line"
-}
