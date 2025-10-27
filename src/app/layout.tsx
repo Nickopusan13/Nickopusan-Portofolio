@@ -13,11 +13,20 @@ const loveYaLikeASister = Love_Ya_Like_A_Sister({
 });
 
 export const metadata: Metadata = {
-  title: "Nickopusan Portofolio",
+  title: "Nickopusan Portfolio – Python & Next.js Developer",
   description:
-    "I'm a Python expert who builds complete web solutions and automation tools. From creating modern websites with Next.js to automating repetitive tasks, to solve complex problems and improve efficiency.",
+    "Full-stack developer specializing in Python, Next.js, and automation tools. I build modern websites and automated solutions to solve complex problems efficiently.",
   icons: {
     icon: "/briefcase.svg",
+  },
+  openGraph: {
+    title: "Nickopusan Portfolio – Python & Next.js Developer",
+    description:
+      "Full-stack developer specializing in Python, Next.js, and automation tools. I build modern websites and automated solutions to solve complex problems efficiently.",
+    url: "https://www.nickopusan.dev",
+    siteName: "Nickopusan",
+    locale: "en_US",
+    type: "website",
   },
 };
 
