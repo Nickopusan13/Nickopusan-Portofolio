@@ -7,12 +7,14 @@ from dotenv import load_dotenv
 from app.routes import user
 from app.core.security import neon_db
 import uvicorn
-import os, asyncio
+import asyncio
+import os
 
 load_dotenv()
 
+
 @asynccontextmanager
-async def lifespan(app:FastAPI):
+async def lifespan(app: FastAPI):
     await create_tabel()
     task = asyncio.create_task(neon_db())
     try:
@@ -24,18 +26,19 @@ async def lifespan(app:FastAPI):
         except asyncio.CancelledError:
             print("Keep-alive task cancelled on shutdown.")
 
+
 app = FastAPI(title="Nickopusan Portofolio", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=os.getenv("ALLOWED_ORIGINS").split(","),
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY"))
 
 app.include_router(user.router)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))  
+    port = int(os.environ.get("PORT", 8080))
     uvicorn.run(app, host="0.0.0.0", port=port)

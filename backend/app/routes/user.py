@@ -6,7 +6,8 @@ from app.crud.user import create_message
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
-import os, uuid
+import os
+import uuid
 
 load_dotenv()
 router = APIRouter()
@@ -15,23 +16,22 @@ sessions = {}
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 instruction_path = os.path.join(BASE_DIR, "../config/instruction.txt")
 with open(instruction_path, "r", encoding="utf-8") as f:
-    SYSTEM_INSTRUCTION = f.read()      
-            
+    SYSTEM_INSTRUCTION = f.read()
+
+
 @router.post("/api/user", response_model=UserMessage)
 async def user_message(data: UserMessage, db: AsyncSession = Depends(get_db)):
-        try:
-            message = await create_message(
-                db=db, 
-                name=data.name, 
-                email=data.email, 
-                message=data.message
-            )
-            return message
-        except Exception as e:
-                raise HTTPException(
-                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                    detail="Internal server error. Please try again later."
-                )
+    try:
+        message = await create_message(
+            db=db, name=data.name, email=data.email, message=data.message
+        )
+        return message
+    except Exception:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal server error. Please try again later.",
+        )
+
 
 @router.post("/api/chat", response_model=ChatResponse)
 async def gemini_chat(request: ChatRequest):
@@ -47,8 +47,8 @@ async def gemini_chat(request: ChatRequest):
             contents=context_messages,
             config=types.GenerateContentConfig(
                 thinking_config=types.ThinkingConfig(thinking_budget=1500),
-                system_instruction=SYSTEM_INSTRUCTION
-            )
+                system_instruction=SYSTEM_INSTRUCTION,
+            ),
         )
         reply_text = response.text if hasattr(response, "text") else str(response)
         chat_history.append({"role": "assistant", "content": reply_text})
@@ -58,5 +58,5 @@ async def gemini_chat(request: ChatRequest):
         print(f"[Gemini API] {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Error, Please try again later"
+            detail="Error, Please try again later",
         )

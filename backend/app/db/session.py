@@ -6,14 +6,10 @@ import os
 load_dotenv()
 
 engine = create_async_engine(
-    os.getenv("SQL_URL"), 
-    echo=True, 
-    connect_args={
-        "ssl": True,
-        "server_settings": {
-            "channel_binding": "require"
-        }
-    })
+    os.getenv("SQL_URL"),
+    echo=True,
+    connect_args={"ssl": True, "server_settings": {"channel_binding": "require"}},
+)
 AsyncSessionLocal = sessionmaker(
     bind=engine,
     class_=AsyncSession,
