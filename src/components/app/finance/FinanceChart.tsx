@@ -10,8 +10,6 @@ import {
 } from "@/components/ui/card";
 import { ReactNode } from "react";
 import { motion } from "motion/react";
-import { financeChart } from "@/utils/api";
-import type { ChartData } from "@/utils/api";
 
 export default function FinanceChart({ children }: { children: ReactNode }) {
   return (

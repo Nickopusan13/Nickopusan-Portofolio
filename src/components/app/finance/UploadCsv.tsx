@@ -35,9 +35,13 @@ import {
 } from "@/components/ui/select";
 import { SelectGroup, SelectLabel } from "@radix-ui/react-select";
 import { FaChartSimple } from "react-icons/fa6";
-import DynamicPlotlyChart from "./DynamicChart";
 import FinanceChart from "./FinanceChart";
 import { PlotType } from "plotly.js";
+import dynamic from "next/dynamic";
+
+const DynamicPlotlyChart = dynamic(() => import("./DynamicChart"), {
+  ssr: false,
+});
 
 const plotlyChartMap: Record<string, PlotType> = {
   scatterchart: "scatter",

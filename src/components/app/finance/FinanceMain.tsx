@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import SideBarApp from "@/components/SideBar";
 import UploadCsv from "./UploadCsv";
-import FinanceChart from "./FinanceChart";
 
 export default function FinanceMain() {
   return (
