@@ -14,3 +14,4 @@ polars==1.35.1
 pandas==2.3.3
 pyarrow==22.0.0
 ydata-profiling==4.17.0
+setuptools==80.9.0
