@@ -15,13 +15,13 @@ import { Home, Briefcase, Code2, Mail } from "lucide-react";
 
 const items = [
   {
-    title: "Intro",
-    url: "#intro",
+    title: "Home",
+    url: "/",
     icon: <Home className="w-5 h-5" />,
   },
   {
-    title: "My Work",
-    url: "#my-work",
+    title: "Finance Dashboard",
+    url: "/app/finance-dashboard",
     icon: <Briefcase className="w-5 h-5" />,
   },
   {

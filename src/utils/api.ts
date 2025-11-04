@@ -49,3 +49,62 @@ export async function postUserChatBot(
   console.log("[API] Raw response:", rawResponse);
   return rawResponse;
 }
+
+interface PreviewRow {
+  [key: string]: string | number | null;
+}
+
+export interface PreviewData {
+  columns: string[];
+  preview: PreviewRow[];
+}
+
+export async function financePreview(file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await fetch(`${API_URL}/api/finance/preview`, {
+    method: "POST",
+    body: formData,
+  });
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({}));
+    throw new Error(error.detail || "Error");
+  }
+  const data = await res.json();
+  return data;
+}
+
+export interface ChartRow {
+  [key: string]: string | number | null;
+}
+
+export interface ChartData {
+  data: ChartRow[];
+  chart_suggestion: string;
+}
+
+export async function financeChart(
+  file: File,
+  x: string,
+  y: string,
+  group?: string
+): Promise<ChartData> {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("x", x);
+  formData.append("y", y);
+  if (group) formData.append("group", group);
+
+  const res = await fetch(`${API_URL}/api/finance/chart`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({}));
+    throw new Error(error.detail || "Error fetching chart data");
+  }
+
+  const data: ChartData = await res.json();
+  return data;
+}

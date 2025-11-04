@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from app.db.init_db import create_tabel
 from starlette.middleware.sessions import SessionMiddleware
 from dotenv import load_dotenv
-from app.routes import user
+from app.routes import user, finance
 from app.core.security import neon_db
 import uvicorn
 import asyncio
@@ -38,6 +38,7 @@ app.add_middleware(
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY"))
 
 app.include_router(user.router)
+app.include_router(finance.router)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
