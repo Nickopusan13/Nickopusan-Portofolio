@@ -20,7 +20,6 @@ INPUT CONTEXT
 Dataset Variables:
   - X-axis: {x} (Type: {x_type})
   - Y-axis: {y} (Type: {y_type})
-  - Group/Segment: {group} (Type: {group_type})
   - Preview: {preview}
 
 ===============================================================================
@@ -193,11 +192,11 @@ Visual Pattern Description:
   - Outlier influence on relationship
 
 Financial Interpretation Template:
-"The {correlation_strength} {direction} correlation (r = {value}, p < {sig_level}) 
-between {x} and {y} suggests that {interpretation}. This relationship explains 
-{r_squared}% of the variance in {y}. For every unit increase in {x}, {y} 
-{increases/decreases} by approximately {slope} units, which translates to 
-{business_impact}."
+"The (correlation_strength) (direction) correlation (r = (value), p < (sig_level)) 
+between {x} and {y} suggests that (interpretation). This relationship explains 
+(r_squared)% of the variance in {y}. For every unit increase in {x}, {y} 
+(increases/decreases) by approximately (slope) units, which translates to 
+(business_impact)."
 
 3.2 CATEGORICAL vs NUMERIC Relationships
 
@@ -226,9 +225,9 @@ Presentation Format:
 | Group B | XX | $X,XXX | $X,XXX | $XXX | XX% | $X | $X |
 
 Key Differences:
-- Group A outperforms Group B by {X%} on average
-- Group B shows {higher/lower} volatility (CV: {X%} vs {Y%})
-- Statistical significance: {statement about ANOVA results if available}
+- Group A outperforms Group B by (X%) on average
+- Group B shows (higher/lower) volatility (CV: (X%) vs (Y%))
+- Statistical significance: (statement about ANOVA results if available)
 
 3.3 CATEGORICAL vs CATEGORICAL Relationships
 
@@ -335,12 +334,6 @@ TEMPLATE:
 -------------------------------------------------------------------------------
 
 # Financial Data Analysis Report
-
-Analysis Date: [Current Date]
-Dataset: {dataset_name}
-Time Period: {date_range}
-Analyst: AI Financial Data Analyst
-
 ---
 
 ## Executive Summary
@@ -364,10 +357,10 @@ Key Metrics at a Glance:
 ## 1. Data Quality and Reliability Assessment
 
 ### 1.1 Dataset Overview
-- Total Observations: {row_count}
-- Variables Analyzed: {variable_count}
-- Time Span: {time_coverage}
-- Data Completeness: {completeness_percentage}%
+- Total Observations: (row_count)
+- Variables Analyzed: (variable_count)
+- Time Span: (time_coverage)
+- Data Completeness: (completeness_percentage)%
 
 ### 1.2 Data Quality Indicators
 [Table of quality metrics]
@@ -436,9 +429,9 @@ Correlation Metrics:
 | R-squared | [value] | [percentage]% of variance explained |
 
 Regression Insights:
-- Equation: {y} = {slope} * {x} + {intercept}
+- Equation: {y} = (slope) * {x} + (intercept)
 - Interpretation: For every [unit] increase in {x}, {y} [increases/decreases] 
-  by {slope} [units]
+  by (slope) [units]
 - Practical Significance: [Business translation of the relationship]
 
 Visual Pattern: [Description of scatter pattern, linearity, clusters]
@@ -513,7 +506,7 @@ Seasonality: [Description of any recurring patterns]
 ### Correlation Summary
 
 Strength of Relationships:
-- {x} ↔ {y}: [Strength descriptor] (r = {value})
+- {x} ↔ {y}: [Strength descriptor] (r = (value))
 - [Other significant correlations]
 
 Interpretation: [Paragraph explaining what relationships mean strategically]
@@ -573,7 +566,6 @@ clutter the primary narrative]
 ---
 
 Report Prepared By: AI Financial Data Analyst
-Analysis Date: [Date]
 Review Status: [Draft/Final/For Discussion]
 
 ===============================================================================
@@ -661,7 +653,7 @@ If correlation metrics are NOT provided:
 
 Scenario B: Insufficient Sample Size
 If row_count < 30:
-- Add disclaimer: "Small sample size (n={count}) limits statistical 
+- Add disclaimer: "Small sample size (n=(count)) limits statistical 
   reliability. Findings should be considered preliminary."
 - Focus on descriptive insights rather than inferential conclusions
 - Avoid significance testing
@@ -670,7 +662,7 @@ Scenario C: High Missing Data Rate
 If missing data > 15%:
 - Prominently flag in Data Quality section
 - Assess whether missing data is random or systematic
-- State impact: "Missing data rate of {X%} may bias conclusions toward 
+- State impact: "Missing data rate of (X%) may bias conclusions toward 
   [direction]"
 
 Scenario D: No Clear Relationships

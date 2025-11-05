@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { financePreview, financeChart } from "@/utils/api";
+import { financePreview, financeChart, financeReport } from "@/utils/api";
 import {
   Card,
   CardAction,
@@ -38,6 +38,7 @@ import { FaChartSimple } from "react-icons/fa6";
 import FinanceChart from "./FinanceChart";
 import { PlotType } from "plotly.js";
 import dynamic from "next/dynamic";
+import { FaChartBar } from "react-icons/fa";
 
 const DynamicPlotlyChart = dynamic(() => import("./DynamicChart"), {
   ssr: false,
@@ -72,14 +73,13 @@ export default function UploadCsv() {
     data: PreviewData["preview"];
     chart_suggestion: string;
   } | null>(null);
-  const { chartType, reason } = parseChartSuggestion(
+  const { chartType } = parseChartSuggestion(
     chartResult?.chart_suggestion || ""
   );
-  console.log(chartType);
-  console.log(reason);
-  const [x, setX] = useState("");
-  const [y, setY] = useState("");
-  const [group, setGroup] = useState("");
+  const [reportResult, setReportResult] = useState<string | null>(null);
+  const [x, setX] = useState<string>("");
+  const [y, setY] = useState<string>("");
+  const [group, setGroup] = useState<string>("");
   const axisOptions = [
     {
       key: "x",
@@ -150,6 +150,24 @@ export default function UploadCsv() {
     } finally {
       setLoading(false);
       setOpenCard(false);
+    }
+  };
+  const handleReport = async () => {
+    if (!file || !x || !y) {
+      toast.error("Error in making report");
+      return;
+    }
+    setLoading(true);
+    try {
+      const result = await financeReport(file, x, y, group || undefined);
+      setReportResult(result.report);
+      toast.success("Report generated successfully!");
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      toast.error(message, { duration: 5000 });
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -225,7 +243,7 @@ export default function UploadCsv() {
               </Table>
             ) : (
               <div className="flex items-center justify-center h-full">
-                <ImUpload2 className="text-9xl animate-bounce text-black" />
+                <ImUpload2 className="text-9xl text-black opacity-60" />
               </div>
             )}
           </div>
@@ -303,8 +321,13 @@ export default function UploadCsv() {
           )}
         </AnimatePresence>
       </Card>
-      <FinanceChart>
-        {chartResult && (
+      <FinanceChart
+        onClick={handleReport}
+        reportResult={reportResult}
+        chartResult={chartResult}
+        loading={loading}
+      >
+        {chartResult ? (
           <>
             <DynamicPlotlyChart
               data={chartResult.data}
@@ -314,6 +337,10 @@ export default function UploadCsv() {
               type={chartType}
             />
           </>
+        ) : (
+          <div className="flex items-center justify-center">
+            <FaChartBar className="text-9xl text-zinc-600 opacity-30" />
+          </div>
         )}
       </FinanceChart>
     </>

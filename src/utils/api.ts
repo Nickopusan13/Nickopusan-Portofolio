@@ -94,17 +94,37 @@ export async function financeChart(
   formData.append("x", x);
   formData.append("y", y);
   if (group) formData.append("group", group);
-
   const res = await fetch(`${API_URL}/api/finance/chart`, {
     method: "POST",
     body: formData,
   });
-
   if (!res.ok) {
     const error = await res.json().catch(() => ({}));
     throw new Error(error.detail || "Error fetching chart data");
   }
-
   const data: ChartData = await res.json();
+  return data;
+}
+
+export async function financeReport(
+  file: File,
+  x: string,
+  y: string,
+  group?: string
+) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("x", x);
+  formData.append("y", y);
+  if (group) formData.append("group", group);
+  const res = await fetch(`${API_URL}/api/finance/report`, {
+    method: "POST",
+    body: formData,
+  });
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({}));
+    throw new Error(error.detail || "Error fetching report data");
+  }
+  const data = await res.json();
   return data;
 }

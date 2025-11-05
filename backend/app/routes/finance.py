@@ -70,7 +70,7 @@ async def finance_analyze(file: UploadFile = File(...), x: str = Form(...), y: s
                 )
         data_preview = df.select(cols).head(20).to_dicts()
         full_data = df.select(cols).to_dicts()
-        print(data_preview)
+        print(full_data)
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
         response = client.models.generate_content(
             model="gemini-2.5-flash",
@@ -78,6 +78,10 @@ async def finance_analyze(file: UploadFile = File(...), x: str = Form(...), y: s
                 x=x,
                 y=y,
                 group=group or "None",
+                x_unique = df[x].n_unique(),
+                y_unique = df[y].n_unique(),
+                group_unique = df[group].n_unique() if group and group in df.columns else 0,
+                row_count = df.height,
                 x_type="numeric" if df[x].dtype.is_numeric() else "categorical",
                 y_type="numeric" if df[y].dtype.is_numeric() else "categorical",
                 preview=json.dumps(data_preview, default=str)
