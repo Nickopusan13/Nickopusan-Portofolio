@@ -1,10 +1,16 @@
 # Nickopusan — Fullstack Engineer & Python Expert
 
-Hello! I’m **Nickopusan**, a **Fullstack Engineer** and **Python Expert** passionate about building scalable, data-driven web applications.  
-You can visit my interactive portfolio here:  
-👉 **[https://nickopusan-portofolio.vercel.app/](https://nickopusan-portofolio.vercel.app/)**
+Hello! I’m **Nickopusan**, a **Fullstack Engineer** and **Python Expert** passionate about building scalable, data-driven web applications.
 
-This portfolio is built with **Next.js**, **FastAPI**, **Neon**, **Vercel**, and **Google Cloud** — featuring a fully interactive “Send Message” form connected to my database, chatbot and advanced analytics tracking with **GTM**, **GA4**, and **BigQuery**.
+You can visit my interactive portfolio here:  
+👉 **[https://www.nickopusan.dev/](https://www.nickopusan.dev/)**
+
+This portfolio is built with **Next.js**, **FastAPI**, **Neon**, **Vercel**, and **Google Cloud**, featuring:
+
+- A fully interactive **“Send Message” form** connected to my database
+- **Chatbot** powered by **Gemini API** for intelligent conversations
+- **Financial report generator** that produces automatic visualizations and reports from uploaded CSV files
+- Advanced analytics tracking with **GTM**, **GA4**, and **BigQuery**
 
 ---
 
@@ -22,13 +28,20 @@ This portfolio is built with **Next.js**, **FastAPI**, **Neon**, **Vercel**, and
 
 ### **Database**
 
-- **Neon** — PostgreSQL with real-time updates, auth, and storage
+- **Neon** — PostgreSQL with real-time updates, authentication, and storage
+
+### **AI & Data Tools**
+
+- **Gemini API** — AI chatbot integration
+- **Python Data Libraries** — For financial report generation and visualization
 
 ---
 
 ## 🌟 Key Features
 
-- 📨 **Send Message Button** — Stores messages directly in Supabase
+- 📨 **Send Message Button** — Stores messages directly in Neon
+- 🤖 **Chatbot Integration** — Intelligent AI chatbot powered by Gemini API
+- 📊 **Financial Report Generator** — Upload CSV files to automatically generate charts, visualizations, and reports
 - ⚡ **Real-time UI** built with Next.js and TypeScript
 - 📱 **Responsive Design** optimized for all devices
 - 🧠 **Advanced Analytics Integration** with GTM, GA4, and BigQuery
@@ -44,9 +57,11 @@ This website uses an advanced tracking pipeline to analyze user behavior and eng
 - **Google Analytics 4 (GA4)** — Tracks page views, engagement, and user events
 - **BigQuery** — Stores analytics data for deeper insights and reporting
 
-Events tracked include:
+**Events tracked include:**
 
 - Clicks on the **Send Message** button
+- **Chatbot interactions** and queries
+- CSV file uploads and financial report generation
 - Page visits and navigation patterns
 - Time spent and engagement across sections
 
@@ -57,9 +72,11 @@ Events tracked include:
 ```text
 Frontend (Next.js + Vercel)
       ↓
-Backend (FastAPI on Railway)
+Backend (FastAPI on Google Cloud)
       ↓
-Database (Supabase)
+Database (Neon)
+      ↓
+AI (Gemini API) + Financial Report Generator
       ↓
 Analytics (GTM → GA4 → BigQuery)
 ```

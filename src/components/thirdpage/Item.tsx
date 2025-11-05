@@ -12,16 +12,16 @@ import {
   SiExpress,
   SiPostgresql,
   SiMysql,
-  SiSqlite,
-  SiSqlalchemy,
   SiGithub,
-  SiSelenium,
-  SiScrapy,
-  SiPostman,
   SiSwagger,
   SiPolars,
-  SiPandas,
+  SiN8N,
+  SiApacheairflow,
+  SiFirebase,
+  SiSupabase,
+  SiGooglebigquery,
 } from "react-icons/si";
+import { DiGoogleCloudPlatform } from "react-icons/di";
 import { FaPython, FaDocker, FaSass, FaNodeJs } from "react-icons/fa";
 
 export const frontend = [
@@ -105,37 +105,37 @@ export const backend = [
 export const database = [
   {
     logo: (
-      <SiPostgresql className="text-5xl text-blue-700 transition-transform duration-300 hover:text-blue-600 hover:scale-110 hover:drop-shadow-[0_0_8px_#2563eb]" />
+      <SiPostgresql className="text-5xl text-[#336791] transition-transform duration-300 hover:text-[#2a5578] hover:scale-110 hover:drop-shadow-[0_0_8px_#336791]" />
     ),
     desc: "PostgreSQL – Powerful open-source relational database",
   },
   {
     logo: (
-      <SiMysql className="text-5xl text-blue-500 transition-transform duration-300 hover:text-blue-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#3b82f6]" />
+      <SiMysql className="text-5xl text-[#4479A1] transition-transform duration-300 hover:text-[#36627a] hover:scale-110 hover:drop-shadow-[0_0_8px_#4479A1]" />
     ),
     desc: "MySQL – Widely used relational database system",
   },
   {
     logo: (
-      <SiSqlalchemy className="text-5xl text-black transition-transform duration-300 hover:text-black hover:scale-110 hover:drop-shadow-[0_0_8px_#374151]" />
+      <SiSupabase className="text-5xl text-[#3ECF8E] transition-transform duration-300 hover:text-[#33b77b] hover:scale-110 hover:drop-shadow-[0_0_8px_#3ECF8E]" />
     ),
-    desc: "SQLAlchemy – Python ORM for database management",
+    desc: "Supabase – Backend-as-a-Service with PostgreSQL database",
   },
   {
     logo: (
-      <SiSqlite className="text-5xl text-gray-500 transition-transform duration-300 hover:text-gray-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#9ca3af]" />
+      <SiFirebase className="text-5xl text-[#FFCA28] transition-transform duration-300 hover:text-[#e6b923] hover:scale-110 hover:drop-shadow-[0_0_8px_#FFCA28]" />
     ),
-    desc: "SQLite – Lightweight file-based database engine",
+    desc: "Firebase – Cloud database and authentication services",
   },
   {
     logo: (
-      <SiPostman className="text-5xl text-orange-500 transition-transform duration-300 hover:text-orange-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#f97316]" />
+      <SiGooglebigquery className="text-5xl text-[#4285F4] transition-transform duration-300 hover:text-[#3367c6] hover:scale-110 hover:drop-shadow-[0_0_8px_#4285F4]" />
     ),
-    desc: "Postman – Tool for testing and managing APIs",
+    desc: "Google BigQuery – Cloud-based data warehouse for analytics",
   },
   {
     logo: (
-      <SiSwagger className="text-5xl text-green-500 transition-transform duration-300 hover:text-green-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#22c55e]" />
+      <SiSwagger className="text-5xl text-[#85EA2D] transition-transform duration-300 hover:text-[#72d126] hover:scale-110 hover:drop-shadow-[0_0_8px_#85EA2D]" />
     ),
     desc: "Swagger – API documentation and design tool",
   },
@@ -144,37 +144,37 @@ export const database = [
 export const others = [
   {
     logo: (
-      <SiGithub className="text-5xl text-gray-700 transition-transform duration-300 hover:text-gray-500 hover:scale-110 hover:drop-shadow-[0_0_8px_#6b7280]" />
+      <SiGithub className="text-5xl text-black transition-transform duration-300 hover:text-gray-700 hover:scale-110 hover:drop-shadow-[0_0_8px_#000]" />
     ),
     desc: "GitHub – Version control and code hosting platform",
   },
   {
     logo: (
-      <FaDocker className="text-5xl text-blue-600 transition-transform duration-300 hover:text-blue-500 hover:scale-110 hover:drop-shadow-[0_0_8px_#3b82f6]" />
+      <FaDocker className="text-5xl text-blue-500 transition-transform duration-300 hover:text-blue-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#0db7ed]" />
     ),
     desc: "Docker – Containerization tool for deploying applications",
   },
   {
     logo: (
-      <SiSelenium className="text-5xl text-green-600 transition-transform duration-300 hover:text-green-500 hover:scale-110 hover:drop-shadow-[0_0_8px_#22c55e]" />
+      <SiApacheairflow className="text-5xl text-orange-500 transition-transform duration-300 hover:text-orange-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#e2761b]" />
     ),
-    desc: "Selenium – Browser automation and testing framework",
+    desc: "Apache Airflow – Workflow orchestration and scheduling tool",
   },
   {
     logo: (
-      <SiScrapy className="text-5xl text-orange-600 transition-transform duration-300 hover:text-orange-500 hover:scale-110 hover:drop-shadow-[0_0_8px_#f97316]" />
+      <DiGoogleCloudPlatform className="text-5xl text-blue-600 transition-transform duration-300 hover:text-blue-500 hover:scale-110 hover:drop-shadow-[0_0_8px_#4285F4]" />
     ),
-    desc: "Scrapy – Python framework for web scraping and crawling",
+    desc: "Google Cloud Platform – Cloud services and infrastructure",
   },
   {
     logo: (
-      <SiPandas className="text-5xl text-blue-400 transition-transform duration-300 hover:text-blue-300 hover:scale-110 hover:drop-shadow-[0_0_8px_#60a5fa]" />
+      <SiN8N className="text-5xl text-purple-600 transition-transform duration-300 hover:text-purple-500 hover:scale-110 hover:drop-shadow-[0_0_8px_#8b5cf6]" />
     ),
-    desc: "Pandas – Python library for data manipulation and analysis",
+    desc: "n8n – Workflow automation and API integration tool",
   },
   {
     logo: (
-      <SiPolars className="text-5xl text-purple-500 transition-transform duration-300 hover:text-purple-400 hover:scale-110 hover:drop-shadow-[0_0_8px_#a78bfa]" />
+      <SiPolars className="text-5xl text-purple-700 transition-transform duration-300 hover:text-purple-600 hover:scale-110 hover:drop-shadow-[0_0_8px_#6b21a8]" />
     ),
     desc: "Polars – Fast DataFrame library for large datasets",
   },
