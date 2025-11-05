@@ -13,21 +13,34 @@ const loveYaLikeASister = Love_Ya_Like_A_Sister({
 });
 
 export const metadata: Metadata = {
-  title: "Nickopusan Portfolio – Python & Next.js Developer",
+  title: "Muhammad Nickopusan Guntara – Full-Stack Python & Next.js Developer",
   description:
-    "Full-stack developer specializing in Python, Next.js, and automation tools. I build modern websites and automated solutions to solve complex problems efficiently.",
+    "Muhammad Nickopusan Guntara is a full-stack developer specializing in Python, Next.js, automation, and modern web solutions. Building fast, scalable, and efficient websites and automation workflows.",
   icons: {
     icon: "/briefcase.svg",
   },
   openGraph: {
-    title: "Nickopusan Portfolio – Python & Next.js Developer",
+    title:
+      "Muhammad Nickopusan Guntara – Full-Stack Python & Next.js Developer",
     description:
-      "Full-stack developer specializing in Python, Next.js, and automation tools. I build modern websites and automated solutions to solve complex problems efficiently.",
+      "Muhammad Nickopusan Guntara is a full-stack developer specializing in Python, Next.js, automation, and modern web solutions. Building fast, scalable, and efficient websites and automation workflows.",
     url: "https://www.nickopusan.dev",
-    siteName: "Nickopusan",
+    siteName: "Muhammad Nickopusan Guntara",
     locale: "en_US",
     type: "website",
   },
+  keywords: [
+    "Muhammad Nickopusan Guntara",
+    "Nickopusan",
+    "Guntara",
+    "Muhammad Guntara",
+    "Python Developer",
+    "Next.js Developer",
+    "Full-Stack Developer",
+    "Web Automation",
+    "Automation Developer",
+    "Portfolio",
+  ],
 };
 
 export default function RootLayout({

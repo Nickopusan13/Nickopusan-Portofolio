@@ -27,7 +27,7 @@ async def lifespan(app: FastAPI):
             print("Keep-alive task cancelled on shutdown.")
 
 
-app = FastAPI(title="Nickopusan Portofolio", lifespan=lifespan)
+app = FastAPI(title="Nickopusan Portfolio", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=os.getenv("ALLOWED_ORIGINS").split(","),

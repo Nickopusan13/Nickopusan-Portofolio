@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Main from "@/components/Main";
 
 export const metadata: Metadata = {
-  title: "Nickopusan Portofolio",
+  title: "Nickopusan Portfolio",
   description:
     "Python and Full-Stack Web Developer specializing in automation, web applications, data analysis, and scalable solutions.",
 };
