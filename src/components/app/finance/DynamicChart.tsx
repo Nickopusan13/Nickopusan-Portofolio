@@ -79,7 +79,7 @@ export default function DynamicPlotlyChart({
         line: {
           color: colors[i % colors.length],
           width: 3,
-          shape: "spline", // Smooth lines
+          shape: "spline",
         },
         hovertemplate: `<b>${g}</b><br>${x}: %{x}<br>${y}: %{y}<extra></extra>`,
       });

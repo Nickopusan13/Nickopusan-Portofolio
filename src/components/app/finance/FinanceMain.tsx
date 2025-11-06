@@ -14,46 +14,6 @@ export default function FinanceMain() {
       transition={{ duration: 1 }}
       className="overflow-auto h-screen scroll-smooth scrollbar-thin scrollbar-track-slate-900 scrollbar-thumb-slate-600 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative"
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.5, 0.3, 0.5],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
-      </div>
       <div className="p-3 fixed z-50 sm:z-100">
         <SidebarProvider defaultOpen={false}>
           <SideBarApp />
@@ -62,13 +22,7 @@ export default function FinanceMain() {
           </motion.div>
         </SidebarProvider>
       </div>
-      <motion.div
-        className="hero-section relative bg-cover bg-center w-full scrollbar-thin py-16 md:py-20 min-h-screen"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
-      >
+      <div className="hero-section relative bg-cover bg-center w-full scrollbar-thin py-16 md:py-20 min-h-screen">
         <div className="flex items-center h-full w-full flex-col px-5 gap-8 lg:px-70 sm:px-20 relative z-10">
           <div className="relative">
             <motion.div
@@ -102,15 +56,15 @@ export default function FinanceMain() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+              <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
               <span
                 className="w-2 h-2 bg-violet-500 rounded-full animate-pulse"
                 style={{ animationDelay: "0.2s" }}
-              ></span>
+              />
               <span
                 className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"
                 style={{ animationDelay: "0.4s" }}
-              ></span>
+              />
             </motion.div>
           </div>
           <motion.div
@@ -130,7 +84,7 @@ export default function FinanceMain() {
                 className="px-4 py-2 bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-full text-xs md:text-sm text-slate-300 font-medium shadow-lg cursor-default"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
                 whileHover={{
                   scale: 1.05,
                   borderColor: "rgba(99, 102, 241, 0.5)",
@@ -149,20 +103,15 @@ export default function FinanceMain() {
           >
             <UploadCsv />
           </motion.div>
-          <motion.div
-            className="mt-16 flex items-center justify-center gap-8 opacity-30"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
-            transition={{ duration: 1, delay: 1.2 }}
-          >
+          <div className="mt-16 flex items-center justify-center gap-8 opacity-30">
             <div className="h-px w-20 bg-gradient-to-r from-transparent to-slate-600"></div>
             <span className="text-slate-300 text-xs uppercase tracking-widest">
               Demo Version
             </span>
             <div className="h-px w-20 bg-gradient-to-l from-transparent to-slate-600"></div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
