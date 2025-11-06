@@ -19,7 +19,7 @@ export const slides = [
     key: "automation",
     href: "#",
     description:
-      "This Python pipeline automates a complete end-to-end workflow. It's built to handle various tasks, from extracting data and integrating with APIs to processing information automatically. The pipeline is designed to run efficiently and deliver clean, structured data for analysis or use in other systems.",
+      "This Python pipeline automates a complete end-to-end workflow. It's built to handle various tasks, from extracting data and integrating with APIs to processing information automatically. The pipeline is designed to run efficiently and deliver clean, structured data for analysis.",
     images: ["/assets/centris/centris-1.png", "/assets/google_maps/maps-1.png"],
   },
 ];

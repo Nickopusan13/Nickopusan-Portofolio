@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { postUserChatBot } from "@/utils/api";
 import { Spinner } from "@/components/ui/spinner";
 import ReactMarkdown from "react-markdown";
+import { motion } from "motion/react";
+import { Bot } from "lucide-react";
 
 interface Message {
   sender: "user" | "bot";
@@ -68,17 +70,36 @@ export default function ChatBot({
       setLoading(false);
     }
   };
-
   return (
     <div className="flex flex-col h-full text-white">
-      <div className="flex flex-col items-center justify-center pt-2 pb-1">
-        <h1 className="text-base font-semibold">Welcome to chatbot</h1>
-        <p className="text-xs text-white/70">
-          Please you can tell anything and ask
+      <div className="relative z-10 flex flex-col items-center justify-center pt-4 pb-3 px-4 bg-slate-800/40 backdrop-blur-sm border-b border-slate-700/50">
+        <motion.div
+          className="flex items-center gap-3 mb-2"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.div
+            className="p-2 bg-gradient-to-br from-blue-500 to-violet-500 rounded-xl shadow-lg"
+            animate={{
+              rotate: [0, 5, -5, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <Bot className="w-5 h-5 text-white" />
+          </motion.div>
+          <h1 className="text-lg font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+            AI Assistant
+          </h1>
+        </motion.div>
+        <p className="text-xs text-slate-400">
+          {`Ask me anything, I'm here to help!`}
         </p>
       </div>
-      <div className="border-b border-white/10 my-2" />
-
       <div className="flex-1 overflow-y-auto scrollbar-none space-y-2">
         {messages.map((msg, i) => (
           <div

@@ -12,6 +12,7 @@ import {
 } from "./ui/sidebar";
 import { motion } from "framer-motion";
 import { Home, Briefcase, Code2, Mail } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 const items = [
   {
@@ -39,8 +40,30 @@ const items = [
 export default function SideBarApp() {
   return (
     <Sidebar className="bg-gradient-to-b from-zinc-900 via-zinc-800 to-zinc-900 text-white shadow-xl border-r border-white/10">
-      <SidebarHeader className="font-bold text-3xl text-center py-6 tracking-tight bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text">
-        Navigation
+      <SidebarHeader className="relative z-10 py-8 px-6">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center gap-3"
+        >
+          <motion.div
+            className="p-3 bg-gradient-to-br from-blue-500 to-violet-500 rounded-2xl shadow-lg shadow-blue-500/30"
+            whileHover={{ scale: 1.05, rotate: 5 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Sparkles className="w-6 h-6 text-white" />
+          </motion.div>
+          <h2 className="font-bold text-2xl text-center tracking-tight bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 text-transparent bg-clip-text">
+            Navigation
+          </h2>
+          <motion.div
+            className="h-1 w-16 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: "4rem" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
+        </motion.div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
@@ -71,8 +94,32 @@ export default function SideBarApp() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="text-center text-sm py-4 text-gray-400 border-t border-white/10">
-        © {new Date().getFullYear()} Nicko
+      <SidebarFooter className="relative z-10 text-center py-6 border-t border-slate-700/30 backdrop-blur-sm">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="flex flex-col items-center gap-2"
+        >
+          <div className="flex items-center gap-2 text-slate-400 text-sm">
+            <motion.span
+              animate={{ rotate: 360 }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              className="text-blue-400"
+            >
+              ✦
+            </motion.span>
+            <span>© {new Date().getFullYear()} Nicko</span>
+            <motion.span
+              animate={{ rotate: -360 }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              className="text-violet-400"
+            >
+              ✦
+            </motion.span>
+          </div>
+          <p className="text-xs text-slate-500">Built with passion</p>
+        </motion.div>
       </SidebarFooter>
     </Sidebar>
   );

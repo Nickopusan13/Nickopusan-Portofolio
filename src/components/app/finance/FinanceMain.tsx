@@ -12,33 +12,155 @@ export default function FinanceMain() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-      className="overflow-auto h-screen scroll-smooth scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-500 bg-black"
+      className="overflow-auto h-screen scroll-smooth scrollbar-thin scrollbar-track-slate-900 scrollbar-thumb-slate-600 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative"
     >
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.5, 0.3, 0.5],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+      </div>
       <div className="p-3 fixed z-50 sm:z-100">
         <SidebarProvider defaultOpen={false}>
           <SideBarApp />
-          <SidebarTrigger />
+          <motion.div>
+            <SidebarTrigger className="bg-slate-800/80 hover:bg-slate-700/80 backdrop-blur-sm border border-slate-700/50 rounded-lg transition-all duration-300 shadow-lg" />
+          </motion.div>
         </SidebarProvider>
       </div>
       <motion.div
-        className="hero-section bg-zinc-900 bg-cover bg-center w-full scrollbar-thin py-10"
+        className="hero-section relative bg-cover bg-center w-full scrollbar-thin py-16 md:py-20 min-h-screen"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div className="flex items-center h-full w-full flex-col px-5 gap-2 lg:px-70 sm:px-20">
-          <motion.h1
-            className="text-2xl lg:text-3xl text-white text-center mb-10"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            Financial Report Generator (DEMO)
-          </motion.h1>
-          <div className="flex flex-col gap-10 w-full h-full">
-            <UploadCsv />
+        <div className="flex items-center h-full w-full flex-col px-5 gap-8 lg:px-70 sm:px-20 relative z-10">
+          <div className="relative">
+            <motion.div
+              className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"
+              initial={{ width: 0 }}
+              animate={{ width: "8rem" }}
+              transition={{ duration: 1, delay: 0.5 }}
+            />
+            <motion.h1
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-4 relative"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+                Financial Report Generator
+              </span>
+            </motion.h1>
+            <motion.p
+              className="text-slate-400 text-center text-sm md:text-base mb-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              Transform your CSV data into actionable insights with AI-powered
+              analysis
+            </motion.p>
+            <motion.div
+              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+            >
+              <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+              <span
+                className="w-2 h-2 bg-violet-500 rounded-full animate-pulse"
+                style={{ animationDelay: "0.2s" }}
+              ></span>
+              <span
+                className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"
+                style={{ animationDelay: "0.4s" }}
+              ></span>
+            </motion.div>
           </div>
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-3 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            {[
+              "AI-Powered",
+              "Real-time Analysis",
+              "Interactive Charts",
+              "Export Ready",
+            ].map((feature, idx) => (
+              <motion.span
+                key={idx}
+                className="px-4 py-2 bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-full text-xs md:text-sm text-slate-300 font-medium shadow-lg cursor-default"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                whileHover={{
+                  scale: 1.05,
+                  borderColor: "rgba(99, 102, 241, 0.5)",
+                  boxShadow: "0 0 20px rgba(99, 102, 241, 0.3)",
+                }}
+              >
+                {feature}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.div
+            className="flex flex-col gap-10 w-full h-full max-w-7xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <UploadCsv />
+          </motion.div>
+          <motion.div
+            className="mt-16 flex items-center justify-center gap-8 opacity-30"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            transition={{ duration: 1, delay: 1.2 }}
+          >
+            <div className="h-px w-20 bg-gradient-to-r from-transparent to-slate-600"></div>
+            <span className="text-slate-300 text-xs uppercase tracking-widest">
+              Demo Version
+            </span>
+            <div className="h-px w-20 bg-gradient-to-l from-transparent to-slate-600"></div>
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>
