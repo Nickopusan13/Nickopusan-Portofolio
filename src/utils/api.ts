@@ -85,6 +85,7 @@ export interface ChartSuggestion {
 }
 export interface ChartData {
   data: ChartRow[];
+  aggregated_data: ChartRow[];
   chart_suggestion: ChartSuggestion;
 }
 

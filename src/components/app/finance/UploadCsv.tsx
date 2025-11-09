@@ -395,7 +395,7 @@ export default function UploadCsv() {
         {chartResult ? (
           <>
             <DynamicPlotlyChart
-              data={chartResult?.aggregated_data || []}
+              data={chartResult?.data || []}
               x={x}
               y={y}
               group={group || undefined}
