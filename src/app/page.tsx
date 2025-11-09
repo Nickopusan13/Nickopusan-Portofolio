@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Main from "@/components/Main";
 
 export default function MainPage() {

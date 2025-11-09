@@ -13,7 +13,7 @@ import { motion } from "motion/react";
 import ToasterProvider from "@/components/Toaster";
 import ReactMarkDown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { PreviewData } from "@/utils/api";
+import type { PreviewData, ChartSuggestion } from "@/utils/api";
 import { FaFileAlt } from "react-icons/fa";
 
 export default function FinanceChart({
@@ -28,7 +28,7 @@ export default function FinanceChart({
   reportResult?: string | null;
   chartResult?: {
     data: PreviewData["preview"];
-    chart_suggestion: string;
+    chart_suggestion: ChartSuggestion;
   } | null;
   loading: boolean;
 }) {

@@ -78,9 +78,14 @@ export interface ChartRow {
   [key: string]: string | number | null;
 }
 
+export interface ChartSuggestion {
+  chart_type: string;
+  aggregation?: string;
+  raw?: string;
+}
 export interface ChartData {
   data: ChartRow[];
-  chart_suggestion: string;
+  chart_suggestion: ChartSuggestion;
 }
 
 export async function financeChart(

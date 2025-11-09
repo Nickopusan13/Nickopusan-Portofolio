@@ -22,7 +22,7 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import toast from "react-hot-toast";
 import ToasterProvider from "@/components/Toaster";
-import type { PreviewData } from "@/utils/api";
+import type { PreviewData, ChartSuggestion } from "@/utils/api";
 import AppDialog from "@/components/AppDialog";
 import { DialogTitle } from "@headlessui/react";
 import {
@@ -44,38 +44,13 @@ const DynamicPlotlyChart = dynamic(() => import("./DynamicChart"), {
   ssr: false,
 });
 
-const plotlyChartMap: Record<string, PlotType> = {
-  scatterchart: "scatter",
-  barchart: "bar",
-  piechart: "pie",
-  boxchart: "box",
-  histogram: "histogram",
-  violin: "violin",
-};
-
-function parseChartSuggestion(suggestion: string): {
-  chartType: PlotType;
-  reason: string;
-} {
-  const lines = suggestion.split("\n");
-  const chartTypeLine = lines.find((line) => line.startsWith("ChartType:"));
-  const reasonLine = lines.find((line) => line.startsWith("Reason:"));
-  const rawType = chartTypeLine
-    ? chartTypeLine.split(":")[1].trim().toLowerCase().replace(/\s/g, "")
-    : "scatter";
-  const chartType = plotlyChartMap[rawType] || "scatter";
-  const reason = reasonLine ? reasonLine.split(":")[1].trim() : "";
-  return { chartType, reason };
-}
-
 export default function UploadCsv() {
   const [chartResult, setChartResult] = useState<{
     data: PreviewData["preview"];
-    chart_suggestion: string;
+    chart_suggestion: ChartSuggestion;
   } | null>(null);
-  const { chartType } = parseChartSuggestion(
-    chartResult?.chart_suggestion || ""
-  );
+  const chartType: PlotType =
+    (chartResult?.chart_suggestion.chart_type as PlotType) || "scatter";
   const [reportResult, setReportResult] = useState<string | null>(null);
   const [x, setX] = useState<string>("");
   const [y, setY] = useState<string>("");
@@ -420,7 +395,7 @@ export default function UploadCsv() {
         {chartResult ? (
           <>
             <DynamicPlotlyChart
-              data={chartResult.data}
+              data={chartResult?.aggregated_data || []}
               x={x}
               y={y}
               group={group || undefined}

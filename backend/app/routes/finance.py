@@ -72,7 +72,7 @@ async def finance_analyze(
         print(full_data)
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-2.5-pro",
             contents=CHART_INSTRUCTION.format(
                 x=x,
                 y=y,
@@ -88,10 +88,62 @@ async def finance_analyze(
                 preview=json.dumps(data_preview, default=str),
             ),
             config=types.GenerateContentConfig(
-                thinking_config=types.ThinkingConfig(thinking_budget=1500)
+                thinking_config=types.ThinkingConfig(thinking_budget=3000)
             ),
         )
-        return {"data": full_data, "chart_suggestion": response.text}
+        try:
+            response_text = response.text.strip()
+            if response_text.startswith("```"):
+                lines = response_text.split("```")
+                if len(lines) >= 2:
+                    response_text = lines[1]
+                    if response_text.startswith("json"):
+                        response_text = response_text[4:].strip()
+            ai_suggestion = json.loads(response_text)
+            ai_suggestion = {
+                "chart_type": ai_suggestion.get("chart_type", "bar"),
+                "aggregation": ai_suggestion.get("aggregation", "mean"),
+                "explanation": ai_suggestion.get("explanation", "Chart analysis")
+            }
+        except Exception as e:
+            ai_suggestion = {
+                "chart_type": "bar", 
+                "aggregation": "mean",
+                "explanation": "Failed to parse AI response"
+            }
+        x_is_num = df[x].dtype.is_numeric()
+        y_is_num = df[y].dtype.is_numeric()
+        if y_is_num and not x_is_num:
+            group_by_col = [x] + ([group] if group else [])
+            value_col = y
+        elif x_is_num and not y_is_num:
+            group_by_col = [y] + ([group] if group else [])
+            value_col = x
+        elif not x_is_num and not y_is_num:
+            group_by_col = [x, y] + ([group] if group else [])
+            value_col = None
+        else:
+            group_by_col = [x] + ([group] if group else [])
+            value_col = y
+        agg_name = ai_suggestion.get("aggregation", "mean").lower()
+        if agg_name == "count" or value_col is None:
+            agg_expr = pl.count().alias("count")
+        else:
+            agg_map = {
+                "mean": pl.col(value_col).mean(),
+                "sum": pl.col(value_col).sum(),
+                "median": pl.col(value_col).median(),
+                "min": pl.col(value_col).min(),
+                "max": pl.col(value_col).max(),
+            }
+            agg_expr = agg_map.get(agg_name, pl.col(value_col).mean())
+        aggregated = df.group_by(group_by_col).agg(agg_expr)
+        chart_data = aggregated.to_dicts()
+        return {
+            "aggregated_data": chart_data,
+            "full_data": df.select(cols).to_dicts(),
+            "chart_suggestion": ai_suggestion,
+        }
     except Exception as e:
         print(f"Error: {e}")
         raise HTTPException(
