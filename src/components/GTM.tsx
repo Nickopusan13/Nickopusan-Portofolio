@@ -12,7 +12,7 @@ export default function GoogletagManager() {
       />
       <noscript
         dangerouslySetInnerHTML={{
-          __html: `        <iframe
+          __html: `<iframe
           src="https://www.googletagmanager.com/ns.html?id=GTM-T2877G4P"
           height="0"
           width="0"

@@ -22,7 +22,7 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import toast from "react-hot-toast";
 import ToasterProvider from "@/components/Toaster";
-import type { PreviewData, ChartSuggestion } from "@/utils/api";
+import type { PreviewData, ChartSuggestion, ChartRow } from "@/utils/api";
 import AppDialog from "@/components/AppDialog";
 import { DialogTitle } from "@headlessui/react";
 import {
@@ -46,7 +46,8 @@ const DynamicPlotlyChart = dynamic(() => import("./DynamicChart"), {
 
 export default function UploadCsv() {
   const [chartResult, setChartResult] = useState<{
-    data: PreviewData["preview"];
+    data: ChartRow[];
+    aggregated_data: ChartRow[];
     chart_suggestion: ChartSuggestion;
   } | null>(null);
   const chartType: PlotType =
@@ -395,7 +396,7 @@ export default function UploadCsv() {
         {chartResult ? (
           <>
             <DynamicPlotlyChart
-              data={chartResult?.data || []}
+              data={chartResult?.aggregated_data || []}
               x={x}
               y={y}
               group={group || undefined}

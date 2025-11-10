@@ -103,13 +103,13 @@ async def finance_analyze(
             ai_suggestion = {
                 "chart_type": ai_suggestion.get("chart_type", "bar"),
                 "aggregation": ai_suggestion.get("aggregation", "mean"),
-                "explanation": ai_suggestion.get("explanation", "Chart analysis")
+                "explanation": ai_suggestion.get("explanation", "Chart analysis"),
             }
-        except Exception as e:
+        except Exception:
             ai_suggestion = {
-                "chart_type": "bar", 
+                "chart_type": "bar",
                 "aggregation": "mean",
-                "explanation": "Failed to parse AI response"
+                "explanation": "Failed to parse AI response",
             }
         x_is_num = df[x].dtype.is_numeric()
         y_is_num = df[y].dtype.is_numeric()
@@ -137,8 +137,7 @@ async def finance_analyze(
                 "max": pl.col(value_col).max(),
             }
             agg_expr = agg_map.get(agg_name, pl.col(value_col).mean())
-        aggregated = df.group_by(group_by_col).agg(agg_expr)
-        chart_data = aggregated.to_dicts()
+        chart_data = df.group_by(group_by_col).agg(agg_expr).to_dicts()
         return {
             "aggregated_data": chart_data,
             "full_data": df.select(cols).to_dicts(),
@@ -169,16 +168,13 @@ async def finance_report(
         for col in cols:
             if col not in df.columns:
                 raise HTTPException(status_code=400, detail=f"Column {col} not found")
-        df_selected = df.select(cols)
-        df_pandas = df_selected.to_pandas()
+        df_pandas = df.select(cols).to_pandas()
         if df_pandas.empty:
             raise HTTPException(
                 status_code=400, detail="CSV contains no data in selected columns"
             )
-        profile = ProfileReport(df_pandas, minimal=True, explorative=True)
-        profile_summary = profile.get_description()
-        preview_dict = profile_summary.variables
-        preview_str = json.dumps(preview_dict, default=str)
+        profile = ProfileReport(df_pandas, minimal=True, explorative=True).get_description().variables
+        preview_str = json.dumps(profile, default=str)
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
         response = client.models.generate_content(
             model="gemini-2.5-pro",
