@@ -21,8 +21,9 @@ import {
   SiSupabase,
   SiGooglebigquery,
 } from "react-icons/si";
+import { TbBrandReactNative } from "react-icons/tb";
 import { DiGoogleCloudPlatform } from "react-icons/di";
-import { FaPython, FaDocker, FaSass, FaNodeJs } from "react-icons/fa";
+import { FaPython, FaDocker, FaNodeJs } from "react-icons/fa";
 
 export const frontend = [
   {
@@ -57,9 +58,9 @@ export const frontend = [
   },
   {
     logo: (
-      <FaSass className="text-5xl text-[#cc6699] transition-transform duration-300 hover:text-[#d279a6] hover:scale-110 hover:drop-shadow-[0_0_8px_#cc6699]" />
+      <TbBrandReactNative className="text-5xl text-blue-400 transition-transform duration-300 hover:text-blue-300 hover:scale-110 hover:drop-shadow-[0_0_8px_#3b82f6]" />
     ),
-    desc: "Sass – CSS preprocessor for easier and organized styling",
+    desc: "React Native – Build mobile apps using React",
   },
 ];
 
